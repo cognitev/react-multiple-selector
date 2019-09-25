@@ -6,8 +6,7 @@ import "./styles.css";
 function App() {
   const [inputValue, setValue] = useState("");
   return (
-    <div className="App">
-      <h1>You're writing in Parent: {inputValue}</h1>
+    <div className="react-select-cities">
       <SelectCities
         maxCountriesNumber={5}
         onInputChange={value => {
