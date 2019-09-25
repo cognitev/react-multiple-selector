@@ -4,6 +4,8 @@ This package built on [`react-select`](https://www.npmjs.com/package/react-selec
 
 ## Installation and usage
 
+[![NPM](https://nodei.co/npm/react-select-cities.png)](https://nodei.co/npm/react-select-cities/)
+
 You can install it using `npm`
 
 `npm install react-select-cities`
