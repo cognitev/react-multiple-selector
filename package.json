@@ -1,28 +1,39 @@
 {
   "name": "react-select-cities",
-  "version": "1.0.0",
+  "author": {
+    "name": "cognitev"
+  },
+  "version": "1.0.6",
   "description": "",
   "keywords": [],
-  "main": "src/index.js",
-  "dependencies": {
+  "main": "dist/index.js",
+  "peerDependencies": {
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-scripts": "3.0.1",
     "react-select": "3.0.5"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
     "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "prepublishOnly": "babel ./src --out-dir ./dist -s inline"
   },
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
+  ],
+  "files": [
+    "dist/*"
   ]
 }

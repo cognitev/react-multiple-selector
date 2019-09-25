@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "./styles.css";
 
 const ListItem = ({ name, type, _id, onRemoveItem }) => {
   return (
-    <li className={styles.listItem}>
+    <li className="listItem">
       {name}
       <span>({type})</span>
       <div

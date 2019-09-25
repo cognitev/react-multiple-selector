@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import AsyncSelect from "react-select/async";
 import { countries } from "./data";
 import ListItem from "./ListItem";
-import styles from "./styles.module.scss";
+import "./styles.css";
 
 const getLastElement = a => a[a.length - 1];
 const filterColors = inputValue =>
@@ -39,7 +39,7 @@ const SelectCities = ({
     ));
 
   return (
-    <div className={styles.reactSelectCities}>
+    <div className="reactSelectCities">
       <AsyncSelect
         backspaceRemovesValue={false}
         isClearable={false}
@@ -71,7 +71,7 @@ const SelectCities = ({
         inputValue={inputValue}
         isMulti
       />
-      <ul className={styles.list}>
+      <ul className="list">
         {currentSelectedValues && renderCountriesList()}
       </ul>
     </div>
