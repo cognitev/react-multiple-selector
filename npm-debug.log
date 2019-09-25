@@ -1,0 +1,121 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/home/cognitev/.nvm/versions/node/v6.2.1/bin/node',
+1 verbose cli   '/home/cognitev/.nvm/versions/node/v6.2.1/bin/npm',
+1 verbose cli   'publish' ]
+2 info using npm@3.9.3
+3 info using node@v6.2.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/home/cognitev/Desktop/react-select-cities',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /home/cognitev/.npm/react-select-cities/1.1.0/package.tgz not in flight; packing
+9 verbose correctMkdir /home/cognitev/.npm correctMkdir not in flight; initializing
+10 info lifecycle react-select-cities@1.1.0~prepublish: react-select-cities@1.1.0
+11 silly lifecycle react-select-cities@1.1.0~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ '/home/cognitev/.npm/react-select-cities/1.1.0/package.tgz',
+12 verbose tar pack   '/home/cognitev/Desktop/react-select-cities' ]
+13 verbose tarball /home/cognitev/.npm/react-select-cities/1.1.0/package.tgz
+14 verbose folder /home/cognitev/Desktop/react-select-cities
+15 verbose addLocalTarball adding from inside cache /home/cognitev/.npm/react-select-cities/1.1.0/package.tgz
+16 verbose correctMkdir /home/cognitev/.npm correctMkdir not in flight; initializing
+17 silly cache afterAdd react-select-cities@1.1.0
+18 verbose afterAdd /home/cognitev/.npm/react-select-cities/1.1.0/package/package.json not in flight; writing
+19 verbose correctMkdir /home/cognitev/.npm correctMkdir not in flight; initializing
+20 verbose afterAdd /home/cognitev/.npm/react-select-cities/1.1.0/package/package.json written
+21 silly publish { name: 'react-select-cities',
+21 silly publish   author: { name: 'cognitev' },
+21 silly publish   version: '1.1.0',
+21 silly publish   description: 'This package built on [`react-select`](https://www.npmjs.com/package/react-select) to select cities, countries, regions, ..etc.',
+21 silly publish   keywords: [],
+21 silly publish   main: 'dist/index.js',
+21 silly publish   peerDependencies:
+21 silly publish    { react: '16.8.6',
+21 silly publish      'react-dom': '16.8.6',
+21 silly publish      'react-scripts': '3.0.1',
+21 silly publish      'react-select': '3.0.5' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/cognitev/react-select-cities.git' },
+21 silly publish   bugs: { url: 'https://github.com/cognitev/react-select-cities/issues' },
+21 silly publish   devDependencies:
+21 silly publish    { '@babel/cli': '^7.6.2',
+21 silly publish      '@babel/core': '^7.6.2',
+21 silly publish      '@babel/preset-env': '^7.6.2',
+21 silly publish      '@babel/preset-react': '^7.0.0',
+21 silly publish      typescript: '3.3.3' },
+21 silly publish   scripts:
+21 silly publish    { start: 'react-scripts start',
+21 silly publish      build: 'react-scripts build',
+21 silly publish      test: 'react-scripts test --env=jsdom',
+21 silly publish      eject: 'react-scripts eject',
+21 silly publish      prepublishOnly: 'babel ./src --out-dir ./dist -s inline' },
+21 silly publish   browserslist: [ '>0.2%', 'not dead', 'not ie <= 11', 'not op_mini all' ],
+21 silly publish   files: [ 'dist/*' ],
+21 silly publish   readme: '# React-Select-Cities\n\nThis package built on [`react-select`](https://www.npmjs.com/package/react-select) to select cities, countries, regions, ..etc.\n\n## Installation and usage\n\nYou can install it using `npm`\n\n`npm install react-select-cities`\n\nthen use it in your app like this: \n\n```js\nimport React, { useState } from \'react\';\nimport ReactSelect from \'react-select-cities\';\n\nfunction App() {\n  const [inputValue, setValue] = useState("");\n\n  return (\n    <div className="App">\n        <ReactSelect\n          maxCountriesNumber={5}\n          onInputChange={value => {\n            const inputValue = value.replace(/\\W/g, "");\n            setValue(inputValue);\n            return inputValue;\n          }}\n          inputValue={inputValue}\n          onChange={(a, b) => {\n            console.log("from Parent: ", a, b);\n          }}\n        />\n    </div>\n  );\n}\n\nexport default App;\n```\n\n## Props\n\nProp | Type | Usage | Note\n------------ | ------------- | ------------- | ------------------------------------------\n`maxCountriesNumber` | Number | The maximum number of countries you can select. | you can select any number of cities/regions/zipcode under those countries, but you can\'t add another country.\n`onInputChange` | Function | fires when you change the input value. | (inputValue) => { return inputValue;}\n`inputValue` | String | The input value you entered | you can manage it using state\n`onChange` | Function | Fires when the value of cities changed | (currentSelectedCities, lastAction) => {}\n\nAll the previous props are required and you have to set them.',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: '77f525e97832e828d3994a4ea0bc2fbc00ae5278',
+21 silly publish   homepage: 'https://github.com/cognitev/react-select-cities#readme',
+21 silly publish   _id: 'react-select-cities@1.1.0',
+21 silly publish   _shasum: '192c2fabda10a7cc45d67d0fac55919417ba74ee',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name react-select-cities
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'react-select-cities',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   name: 'react-select-cities',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/react-select-cities
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading /home/cognitev/.npm/react-select-cities/1.1.0/package.tgz
+30 verbose request uri https://registry.npmjs.org/react-select-cities
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 6:07:32 PM
+33 verbose request using bearer token for auth
+34 verbose request id 80834a9a18ae5b83
+35 http request PUT https://registry.npmjs.org/react-select-cities
+36 http 403 https://registry.npmjs.org/react-select-cities
+37 verbose headers { date: 'Wed, 25 Sep 2019 15:07:11 GMT',
+37 verbose headers   'content-type': 'application/json',
+37 verbose headers   'transfer-encoding': 'chunked',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'set-cookie': [ '__cfduid=dbf664d032d53616fc62b4223d55fd58e1569424031; expires=Thu, 24-Sep-20 15:07:11 GMT; path=/; domain=.npmjs.org; HttpOnly' ],
+37 verbose headers   'cf-ray': '51bde8038e78c057-MRS',
+37 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+37 verbose headers   vary: 'Accept-Encoding',
+37 verbose headers   server: 'cloudflare',
+37 verbose headers   'content-encoding': 'gzip' }
+38 verbose request invalidating /home/cognitev/.npm/registry.npmjs.org/react-select-cities on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: You cannot publish over the previously published versions: 1.1.0. : react-select-cities
+40 verbose stack     at makeError (/home/cognitev/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (/home/cognitev/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+40 verbose stack     at /home/cognitev/.nvm/versions/node/v6.2.1/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:178:7
+40 verbose stack     at Gunzip.onEnd (zlib.js:227:5)
+40 verbose stack     at emitNone (events.js:91:20)
+40 verbose stack     at Gunzip.emit (events.js:185:7)
+40 verbose stack     at endReadableNT (_stream_readable.js:926:12)
+40 verbose stack     at _combinedTickCallback (internal/process/next_tick.js:74:11)
+40 verbose stack     at process._tickCallback (internal/process/next_tick.js:98:9)
+41 verbose statusCode 403
+42 verbose pkgid react-select-cities
+43 verbose cwd /home/cognitev/Desktop/react-select-cities
+44 error Linux 5.0.0-29-generic
+45 error argv "/home/cognitev/.nvm/versions/node/v6.2.1/bin/node" "/home/cognitev/.nvm/versions/node/v6.2.1/bin/npm" "publish"
+46 error node v6.2.1
+47 error npm  v3.9.3
+48 error code E403
+49 error You cannot publish over the previously published versions: 1.1.0. : react-select-cities
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
