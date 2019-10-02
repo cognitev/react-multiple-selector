@@ -1,26 +1,13 @@
 import React, { useState, useEffect } from "react";
 import AsyncSelect from "react-select/async";
-import { countries } from "./data";
 import ListItem from "./ListItem";
 import "./styles.css";
-
-const getLastElement = a => a[a.length - 1];
-const filterColors = inputValue =>
-  countries.filter(i =>
-    i.name.toLowerCase().includes(inputValue.toLowerCase())
-  );
-
-const promiseOptions = inputValue =>
-  new Promise(resolve => {
-    setTimeout(() => {
-      resolve(filterColors(inputValue));
-    }, 1000);
-  });
 
 const SelectCities = ({
   onChange,
   inputValue,
   onInputChange,
+  loadOptions,
   maxCountriesNumber
 }) => {
   const [currentSelectedValues, selectValues] = useState([]);
@@ -49,7 +36,7 @@ const SelectCities = ({
         }}
         getOptionLabel={country => country.name}
         getOptionValue={country => country._id}
-        loadOptions={promiseOptions}
+        loadOptions={loadOptions}
         onInputChange={onInputChange}
         value={currentSelectedValues}
         onChange={(currentValues, action) => {

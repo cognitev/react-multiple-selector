@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-const ListItem = ({ name, type, _id, onRemoveItem }) => {
+const ListItem = ({ name, type, _id, code, parent_id, regions, cities, onRemoveItem }) => {
   return (
     <li className="listItem">
       {name}

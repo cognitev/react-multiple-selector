@@ -3,7 +3,7 @@
   "author": {
     "name": "cognitev"
   },
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
@@ -42,5 +42,10 @@
   ],
   "files": [
     "dist/*"
-  ]
+  ],
+  "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0"
+  }
 }
