@@ -19,19 +19,39 @@ import ReactSelect from 'react-multiple-selector';
 function App() {
   const [inputValue, setValue] = useState("");
 
+  function onChange(value, callback) {
+    if(!value) return callback([]);
+    return new Promise((resolve, reject) => {
+      const url = `https://api.test.com`;
+      return fetch(url).then(async response => {
+        if (response.ok) {
+          const data = await response.json();
+          const modifiedData = data.map(i => ({key: i._id, ...i}));
+          callback(modifiedData);
+        } else {
+          reject(new Error('error'))
+        }
+      }, error => {
+        reject(new Error(error.message))
+      })
+    })
+  }
+
   return (
     <div className="App">
         <ReactSelect
           maxSelectedItems={5}
-          onInputChange={value => {
-            const inputValue = value.replace(/\W/g, "");
-            setValue(inputValue);
-            return inputValue;
+          onInputChange={(e) => {
+            setValue(e);
+            return e;
           }}
+          debounceTime={2000}
+          loadOptions={onChange}
           inputValue={inputValue}
           onChange={(a, b) => {
             console.log("from Parent: ", a, b);
           }}
+          customType="Country"
         />
     </div>
   );
