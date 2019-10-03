@@ -1,14 +1,14 @@
 import React from "react";
 import "./styles.css";
 
-const ListItem = ({ name, type, _id, code, parent_id, regions, cities, onRemoveItem }) => {
+const ListItem = (props) => {
   return (
     <li className="listItem">
-      {name}
-      <span>({type})</span>
+      {props.item[props.labelOption]}
+      {props.item[props.typeOption] ? <span>({props.item[props.typeOption]})</span> : null}
       <div
         onClick={() => {
-          onRemoveItem(_id);
+          props.onRemoveItem(props.item[props.valueOption]);
         }}
       >
         X

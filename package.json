@@ -1,9 +1,9 @@
 {
-  "name": "react-select-cities",
+  "name": "react-multiple-selector",
   "author": {
     "name": "cognitev"
   },
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
@@ -11,14 +11,15 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-scripts": "3.0.1",
-    "react-select": "3.0.5"
+    "react-select": "3.0.5",
+    "lodash.debounce": "^4.0.8"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cognitev/react-select-cities.git"
+    "url": "https://github.com/cognitev/react-multiple-selector.git"
   },
   "bugs": {
-    "url": "https://github.com/cognitev/react-select-cities/issues"
+    "url": "https://github.com/cognitev/react-multiple-selector/issues"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.2",
@@ -46,6 +47,8 @@
   "dependencies": {
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0"
+    "babel-preset-env": "^1.7.0",
+    "lodash.debounce": "^4.0.8",
+    "react-scripts": "^3.2.0"
   }
 }
