@@ -77,7 +77,7 @@ const SelectCities = ({
         value={currentSelectedValues}
         onChange={(currentValues, action) => { checkCountries(currentValues, action); }}
         inputValue={inputValue}
-        defaultOptions={defaultValue}
+        defaultValue={defaultValue}
         placeholder={placeholder}
         isMulti
       />
