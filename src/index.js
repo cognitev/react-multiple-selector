@@ -17,6 +17,8 @@ const SelectCities = ({
   typeOption = 'type',
   customType = 'country',
   debounceTime = 300,
+  defaultValue = [],
+  placeholder='Select...',
   ...props
 }) => {
   useEffect(() => {
@@ -75,6 +77,8 @@ const SelectCities = ({
         value={currentSelectedValues}
         onChange={(currentValues, action) => { checkCountries(currentValues, action); }}
         inputValue={inputValue}
+        defaultOptions={defaultValue}
+        placeholder={placeholder}
         isMulti
       />
       <ul className="list">
