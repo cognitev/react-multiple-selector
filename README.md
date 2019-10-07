@@ -74,5 +74,5 @@ Prop | Type | Usage | Note
 `typeOption` | String | Property to set maximum selected items on it | default = 'type'
 `customType` | String | Previous Property value to apply the maximum on it | default = 'country' 
 `debounceTime` | Number | Debounce time applied to `onChange` function so the function doesn't fire before your last keyboard click and this time | default = 300
-`defaultValue` | Array | List of default values | [{}, {}, ...]
+`value` | Array | List of default values | [{}, {}, ...]
 `placeholder` | String | Placeholder for searching | default = 'Search...'

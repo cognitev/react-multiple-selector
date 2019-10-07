@@ -19,19 +19,21 @@ const SelectCities = ({
   debounceTime = 300,
   defaultValue = [],
   placeholder='Select...',
+  value = [],
   ...props
 }) => {
+  const [currentSelectedValues, selectValues] = useState([]);
   useEffect(() => {
     debouncedOnChange = debounce(loadOptions, debounceTime);
+    renderCountriesList();
   }, [])
-  
-  const [currentSelectedValues, selectValues] = useState([]);
-  const renderCountriesList = () =>
-    currentSelectedValues.map(country => (
+  const renderCountriesList = () => {
+    const values = currentSelectedValues.length === 0 ? [...value] : [...currentSelectedValues];
+    return values.map(country => (
       <ListItem
         item={country}
         onRemoveItem={id => {
-          const newItems = currentSelectedValues.filter(
+          const newItems = values.filter(
             country => country[valueOption] !== id
           );
           selectValues(newItems);
@@ -42,6 +44,7 @@ const SelectCities = ({
         customType={customType}
       />
     ));
+  }
 
   const getLastElement = arr => arr[arr.length - 1];
   const checkCountries = (currentValues, action) => {
@@ -74,7 +77,7 @@ const SelectCities = ({
         getOptionValue={option => option[valueOption]}
         loadOptions={debouncedOnChange}
         onInputChange={onInputChange}
-        value={currentSelectedValues}
+        value={currentSelectedValues.length === 0 ? value : currentSelectedValues}
         onChange={(currentValues, action) => { checkCountries(currentValues, action); }}
         inputValue={inputValue}
         defaultValue={defaultValue}
