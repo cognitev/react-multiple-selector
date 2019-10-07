@@ -22,31 +22,11 @@ const SelectCities = ({
   value = [],
   ...props
 }) => {
-  const [currentSelectedValues, selectValues] = useState([]);
+  const [currentSelectedValues, selectValues] = useState([...value]);
   useEffect(() => {
     debouncedOnChange = debounce(loadOptions, debounceTime);
     renderCountriesList();
   }, [])
-  const renderCountriesList = () => {
-    const values = currentSelectedValues.length === 0 ? [...value] : [...currentSelectedValues];
-    return values.map(country => (
-      <ListItem
-        item={country}
-        onRemoveItem={id => {
-          const newItems = values.filter(
-            country => country[valueOption] !== id
-          );
-          selectValues(newItems);
-        }}
-        valueOption={valueOption}
-        labelOption={labelOption}
-        typeOption={typeOption}
-        customType={customType}
-      />
-    ));
-  }
-
-  const getLastElement = arr => arr[arr.length - 1];
   const checkCountries = (currentValues, action) => {
     const numberOfCountries = currentValues.reduce(
       (acc, country) => (acc += Number(country[typeOption] === customType)),
@@ -64,6 +44,27 @@ const SelectCities = ({
     }
   };
 
+  const renderCountriesList = () => {
+    return currentSelectedValues.map(country => (
+      <ListItem
+        item={country}
+        onRemoveItem={id => {
+          const newItems = currentSelectedValues.filter(
+            country => country[valueOption] !== id
+          );
+          selectValues(newItems);
+          checkCountries(newItems, null);
+        }}
+        valueOption={valueOption}
+        labelOption={labelOption}
+        typeOption={typeOption}
+        customType={customType}
+      />
+    ));
+  }
+
+  const getLastElement = arr => arr[arr.length - 1];
+
   return (
     <div className="reactSelectCities" {...props}>
       <AsyncSelect
@@ -77,7 +78,7 @@ const SelectCities = ({
         getOptionValue={option => option[valueOption]}
         loadOptions={debouncedOnChange}
         onInputChange={onInputChange}
-        value={currentSelectedValues.length === 0 ? value : currentSelectedValues}
+        value={currentSelectedValues}
         onChange={(currentValues, action) => { checkCountries(currentValues, action); }}
         inputValue={inputValue}
         defaultValue={defaultValue}
