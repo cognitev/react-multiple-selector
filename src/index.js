@@ -11,7 +11,7 @@ const SelectCities = ({
   inputValue,
   onInputChange,
   loadOptions,
-  maxSelectedItems,
+  maxSelectedItems = Infinity,
   labelOption = 'name',
   valueOption = '_id',
   typeOption = 'type',
