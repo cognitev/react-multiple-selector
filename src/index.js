@@ -22,38 +22,20 @@ const SelectCities = ({
   value = [],
   ...props
 }) => {
-  const [currentSelectedValues, selectValues] = useState([...value]);
   useEffect(() => {
     debouncedOnChange = debounce(loadOptions, debounceTime);
     renderCountriesList();
   }, [])
-  const checkCountries = (currentValues, action) => {
-    const numberOfCountries = currentValues.reduce(
-      (acc, country) => (acc += Number(country[typeOption] === customType)),
-      0
-    );
-    if (numberOfCountries > maxSelectedItems) {
-      const lastElement = getLastElement(currentValues);
-      if (lastElement[typeOption] !== customType) {
-        onChange(currentValues, action);
-        selectValues(currentValues);
-      }
-    } else {
-      onChange(currentValues, action);
-      selectValues(currentValues);
-    }
-  };
 
   const renderCountriesList = () => {
-    return currentSelectedValues.map(country => (
+    return value.map(country => (
       <ListItem
         item={country}
         onRemoveItem={id => {
-          const newItems = currentSelectedValues.filter(
+          const newItems = value.filter(
             country => country[valueOption] !== id
           );
-          selectValues(newItems);
-          checkCountries(newItems, null);
+          onChange(newItems);
         }}
         valueOption={valueOption}
         labelOption={labelOption}
@@ -62,8 +44,6 @@ const SelectCities = ({
       />
     ));
   }
-
-  const getLastElement = arr => arr[arr.length - 1];
 
   return (
     <div className="reactSelectCities" {...props}>
@@ -78,15 +58,15 @@ const SelectCities = ({
         getOptionValue={option => option[valueOption]}
         loadOptions={debouncedOnChange}
         onInputChange={onInputChange}
-        value={currentSelectedValues}
-        onChange={(currentValues, action) => { checkCountries(currentValues, action); }}
+        value={value}
+        onChange={(currentValues) => { onChange(currentValues); }}
         inputValue={inputValue}
         defaultValue={defaultValue}
         placeholder={placeholder}
         isMulti
       />
       <ul className="list">
-        {currentSelectedValues && renderCountriesList()}
+        {value && renderCountriesList()}
       </ul>
     </div>
   );
