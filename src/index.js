@@ -63,6 +63,7 @@ const SelectCities = ({
         inputValue={inputValue}
         defaultValue={defaultValue}
         placeholder={placeholder}
+        components={{ DropdownIndicator:() => null }}
         isMulti
       />
       <ul className="list">
