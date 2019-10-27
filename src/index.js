@@ -19,7 +19,7 @@ const SelectCities = ({
   debounceTime = 300,
   defaultValue = [],
   placeholder='Select...',
-  noOptionsMessage='Start Writing to select...',
+  noOptionsMessage='Enter a location to target',
   value = [],
   ...props
 }) => {
