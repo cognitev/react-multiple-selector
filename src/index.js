@@ -65,7 +65,7 @@ const SelectCities = ({
         defaultValue={defaultValue}
         placeholder={placeholder}
         components={{ DropdownIndicator:() => null }}
-        noOptionsMessage={noOptionsMessage}
+        noOptionsMessage={() => noOptionsMessage}
         isMulti
       />
       <ul className="list">
