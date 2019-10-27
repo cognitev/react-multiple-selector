@@ -19,6 +19,7 @@ const SelectCities = ({
   debounceTime = 300,
   defaultValue = [],
   placeholder='Select...',
+  noOptionsMessage='Start Writing to select...',
   value = [],
   ...props
 }) => {
@@ -28,7 +29,7 @@ const SelectCities = ({
   }, [])
 
   const renderCountriesList = () => {
-    return value.map(country => (
+    return Array.isArray(value) && value.map(country => (
       <ListItem
         item={country}
         onRemoveItem={id => {
@@ -64,6 +65,7 @@ const SelectCities = ({
         defaultValue={defaultValue}
         placeholder={placeholder}
         components={{ DropdownIndicator:() => null }}
+        noOptionsMessage={noOptionsMessage}
         isMulti
       />
       <ul className="list">
