@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import AsyncSelect from "react-select/async";
+import { components } from 'react-select';
 import ListItem from "./ListItem";
 import "./styles.css";
 import debounce from 'lodash.debounce';
+import { AutoSizer, List } from "react-virtualized";
 
 let debouncedOnChange; 
 
@@ -26,24 +28,22 @@ const SelectCities = ({
   useEffect(() => {
     debouncedOnChange = debounce(loadOptions, debounceTime);
     renderCountriesList();
-  }, [])
+  }, []);
 
   const renderCountriesList = () => {
-    return Array.isArray(value) && value.map(country => (
-      <ListItem
-        item={country}
-        onRemoveItem={id => {
-          const newItems = value.filter(
-            country => country[valueOption] !== id
-          );
-          onChange(newItems);
-        }}
-        valueOption={valueOption}
-        labelOption={labelOption}
-        typeOption={typeOption}
-        customType={customType}
-      />
-    ));
+    return Array.isArray(value) && value.map(country => <ListItem
+      item={country}
+      onRemoveItem={id => {
+        const newItems = value.filter(
+          country => country[valueOption] !== id
+        );
+        onChange(newItems);
+      }}
+      valueOption={valueOption}
+      labelOption={labelOption}
+      typeOption={typeOption}
+      customType={customType}
+    />);
   }
 
   return (
@@ -64,13 +64,27 @@ const SelectCities = ({
         inputValue={inputValue}
         defaultValue={defaultValue}
         placeholder={placeholder}
-        components={{ DropdownIndicator:() => null }}
+        components={{ DropdownIndicator: () => null, MenuList: (props) => 
+          <components.MenuList {...props}>
+            {props.children.length
+              ? <List
+                  width={900}
+                  height={200}
+                  rowHeight={35}
+                  style={{ width: '100%' }}
+                  rowRenderer={({index, key, style}) => <li style={{...style, width: '100%'}} key={key}>{props.children[index]}</li>}
+                  rowCount={props.children.length}
+                />
+              : props.children
+            }
+          </components.MenuList>
+        }}
         noOptionsMessage={() => noOptionsMessage}
         isMulti
       />
-      <ul className="list">
-        {value && renderCountriesList()}
-      </ul>
+        <ul className="list">
+          {value && renderCountriesList()}
+        </ul>
     </div>
   );
 };
