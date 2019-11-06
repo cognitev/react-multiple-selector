@@ -4,7 +4,7 @@ import "./styles.css";
 const ListItem = (props) => {
   return (
     <li className="listItem">
-      {props.item[props.labelOption]}
+      {props.item[props.labelOption] || props.item['name']}
       {props.item[props.typeOption] ? <span>({props.item[props.typeOption]})</span> : null}
       <div
         onClick={() => {
