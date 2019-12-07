@@ -42,3 +42,8 @@
     color: #de350b;
     cursor: pointer;
 }
+
+.noOptionMessage{
+    padding: 10px;
+    text-align: center;
+}

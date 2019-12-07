@@ -1,38 +1,37 @@
-var path = require('path');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+
+const { NODE_ENV, FILE_NAME } = process.env;
+const filename = `${FILE_NAME}${NODE_ENV === 'production' ? '.min' : ''}.js`;
 
 module.exports = {
-  entry: './index.js',
+  mode: NODE_ENV || 'development',
+  entry: [
+    './src/index.js',
+  ],
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
-    libraryTarget: 'commonjs2'
+    path: path.join(__dirname, 'dist'),
+    filename,
+    libraryTarget: 'umd',
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          output: {
+            comments: false,
+          },
+        },
+      }),
+    ],
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include: path.resolve(__dirname, 'src'),
-        exclude: /(node_modules|bower_components|build)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['env']
-          }
-        }
-      }, {
-        test: /\.*css$/,
-        use : ExtractTextPlugin.extract({
-            fallback : 'style-loader',
-            use : [
-                'css-loader',
-                'sass-loader'
-            ]
-        })
-       },
-    ]
+        test: /\.js(x?)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+    ],
   },
-  externals: {
-    'react': 'commonjs react' 
-  }
 };
