@@ -1,21 +1,22 @@
 .list {
-    padding-left: 0;
+  padding: 0;
+  margin: 5px 0 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 .list .listItem {
-    border-radius: 2px;
-    color: #333;
-    font-size: 85%;
-    overflow: hidden;
-    padding: 3px;
-    padding-left: 6px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    box-sizing: border-box;
-    background-color: #e6e6e6;
-    display: flex;
-    margin: 2px;
-    min-width: 0;
-    width: fit-content;
+  color: #333;
+  overflow: hidden;
+  padding-left: 6px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: #e6e6e6;
+  display: flex;
+  margin: 2px;
+  min-width: 0;
+  width: fit-content;
+  height: 32px;
+  line-height: 32px;
 }
 .list .listItem span {
     font-style: italic;
@@ -23,27 +24,11 @@
     color: #636363;
 }
 .list .listItem div {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    border-radius: 2px;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    padding-left: 4px;
-    padding-right: 4px;
-    box-sizing: border-box;
-    margin-left: 5px;
-}
-.list .listItem div:hover {
-    background-color: #ffbdad;
-    color: #de350b;
-    cursor: pointer;
+  margin-left: 5px;
+  padding: 0 5px;
+  font-size: 10px;
 }
 
-.noOptionMessage{
-    padding: 10px;
-    text-align: center;
+.list .listItem div:hover {
+    cursor: pointer;
 }

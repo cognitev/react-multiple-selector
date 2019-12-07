@@ -2,7 +2,6 @@ import React, {useEffect} from "react";
 import AsyncSelect from "react-select/async";
 import {components} from 'react-select';
 import ListItem from "./ListItem";
-import "./styles.css";
 import debounce from 'lodash.debounce';
 import {List} from "react-virtualized";
 
@@ -10,7 +9,8 @@ let debouncedOnSearch;
 
 const MultiSelect = ({
                        onSelect,
-                       onSearch = () => {},
+                       onSearch = () => {
+                       },
                        labelOption = 'name',
                        valueOption = 'value',
                        typeOption = 'type',
@@ -20,19 +20,19 @@ const MultiSelect = ({
                        noOptionsMessage = 'Start Typing to view options',
                        selectedOptions = [],
                        className,
+                       mainColor,
                      }) => {
   useEffect(() => {
-    const loadOptions = inputValue => onSearch(inputValue);
+    const loadOptions = (inputValue, callback) => onSearch(inputValue, callback);
     debouncedOnSearch = debounce(loadOptions, debounceTime);
-    renderOptionsList();
   }, []);
 
   const renderOptionsList = () => {
-    return Array.isArray(selectedOptions) && selectedOptions.map(country => <ListItem
-      item={country}
+    return Array.isArray(selectedOptions) && selectedOptions.map(option => <ListItem
+      item={option}
       onRemoveItem={id => {
         const newItems = selectedOptions.filter(
-          country => country[valueOption] !== id
+          item => item[valueOption] !== id
         );
         onSelect(newItems);
       }}
@@ -41,6 +41,49 @@ const MultiSelect = ({
       typeOption={typeOption}
     />);
   };
+
+  const customStyles = {
+    multiValue: () => ({display: "none"}),
+    multiValueRemove: base => ({...base, display: "none"}),
+    option: (provided, state) => ({
+      ...provided,
+      height: '32px',
+      padding: '0 10px',
+      lineHeight: '32px',
+    }),
+    control: (provided, state) => ({
+      ...provided,
+      height: '32px',
+      borderRadius: 0,
+      padding: 0,
+      margin: 0,
+      minHeight: "32px",
+      lineHeight: 'initial',
+      ...(mainColor && (state.isFocused || state.isSelected) ? {
+        borderColor: mainColor,
+        boxShadow: 'none',
+        '&:hover': {
+          borderColor: mainColor
+        }
+      } : {}),
+      '&:hover': {
+        borderColor: mainColor
+      }
+    }),
+    menu: (provided) => ({
+      ...provided,
+      borderRadius: 0,
+    }),
+    noOptionsMessage: (provided) => ({
+      ...provided,
+      padding: '10px',
+      textAlign: 'center',
+    }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      display: 'none'
+    })
+  }
 
   return (
     <div className={className}>
@@ -51,17 +94,14 @@ const MultiSelect = ({
         isClearable={false}
         getOptionLabel={option => option[labelOption]}
         getOptionValue={option => option[valueOption]}
-        loadOptions={input => debouncedOnSearch(input)}
+        loadOptions={(input, callback) => debouncedOnSearch(input, callback)}
         value={selectedOptions}
         defaultValue={defaultSelectedOptions}
         placeholder={placeholder}
         onChange={(currentValues) => {
           onSelect(currentValues);
         }}
-        styles={{
-          multiValue: () => ({display: "none"}),
-          multiValueRemove: base => ({...base, display: "none"})
-        }}
+        styles={customStyles}
         components={{
           DropdownIndicator: () => null, MenuList: (props) =>
             <components.MenuList {...props}>
@@ -69,7 +109,7 @@ const MultiSelect = ({
                 ? <List
                   width={900}
                   height={200}
-                  rowHeight={35}
+                  rowHeight={32}
                   style={{width: '100%'}}
                   rowRenderer={({index, key, style}) =>
                     <li style={{...style, width: '100%'}}

@@ -3,14 +3,16 @@
   "author": {
     "name": "cognitev"
   },
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "",
   "keywords": [],
   "main": "dist/index.js",
-  "peerDependencies": {
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
-    "react-scripts": "3.0.1"
+  "scripts": {
+    "build": "npm run clean && npm run build:commonjs",
+    "build:commonjs": "babel src --out-dir dist",
+    "clean": "rimraf dist",
+    "lint": "eslint src --ext .js,.jsx",
+    "prepublishOnly": "npm run build && cp -R src/styles.css dist/styles.css"
   },
   "repository": {
     "type": "git",
@@ -19,19 +21,6 @@
   "bugs": {
     "url": "https://github.com/cognitev/react-multiple-selector/issues"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "prepublishOnly": "babel ./src --out-dir ./dist -s inline"
-  },
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -39,13 +28,37 @@
     "not op_mini all"
   ],
   "files": [
-    "dist/*"
+    "lib",
+    "src",
+    "dist"
   ],
   "dependencies": {
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "react-scripts": "^3.2.0",
-    "react-select": "3.0.5",
+    "lodash.debounce": "^4.0.8",
     "react-virtualized": "^9.21.1",
-    "lodash.debounce": "^4.0.8"
+    "react-select": "3.0.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.3",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.7.0",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^8.0.6",
+    "cross-env": "^5.2.0",
+    "css-loader": "2.1.1",
+    "eslint": "^5.15.1",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
+  "peerDependencies": {
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   }
 }
