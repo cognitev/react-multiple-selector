@@ -3,7 +3,7 @@ import "./styles.css";
 
 const ListItem = (props) => {
   return (
-    <li className="listItem">
+    <li className="listItem" key={`item-${props.item[props.valueOption]}`}>
       {props.item[props.labelOption] || props.item['name']}
       {props.item[props.typeOption] ? <span>({props.item[props.typeOption]})</span> : null}
       <div
