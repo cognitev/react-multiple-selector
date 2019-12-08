@@ -40,6 +40,7 @@ const MultiSelect = ({
       valueOption={valueOption}
       labelOption={labelOption}
       typeOption={typeOption}
+      key={`item-${valueOption}`}
     />);
   };
 
