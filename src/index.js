@@ -25,6 +25,7 @@ const MultiSelect = ({
   useEffect(() => {
     const loadOptions = (inputValue, callback) => onSearch(inputValue, callback);
     debouncedOnSearch = debounce(loadOptions, debounceTime);
+    renderOptionsList();
   }, []);
 
   const renderOptionsList = () => {
